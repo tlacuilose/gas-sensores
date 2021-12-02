@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reportes-deployment
+  labels:
+    app: reportes-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: reportes-service
+  template:
+    metadata:
+      labels:
+        app: reportes-service
+    spec:
+      containers:
+        - name: reportes-service
+          image: reportes-service
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reportes-service
+spec:
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: reportes-service
+  type: LoadBalancer
