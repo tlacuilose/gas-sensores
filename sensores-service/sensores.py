@@ -8,21 +8,59 @@ api = Api(app)
 class SensoresData(Resource):
     def get(self):
         # Proxy y agrupar info de sensores
-        return { 'tanques': [
-                {
-                    'tank_id': 0,
-                    'contenido': 30,
-                },
+        return [
+        { 
+            'gasolinera': 'Pemex1',
+            'tanques': [
                 {
                     'tank_id': 1,
-                    'contenido': 30,
+                    'contenido': 20,
+                    'capacidad': 100,
+                    'consumo_por_dia': 3,
+                    'funcional': 1
                 },
                 {
                     'tank_id': 2,
+                    'contenido': 30,
+                    'capacidad': 100,
+                    'consumo_por_dia': 3,
+                    'funcional': 0
+                },
+                {
+                    'tank_id': 3,
                     'contenido': 40,
+                    'capacidad': 100,
+                    'consumo_por_dia': 3,
+                    'funcional': 1
                 },
             ]
-        }
+        },
+        { 
+            'gasolinera': 'Pemex2',
+            'tanques': [
+                {
+                    'tank_id': 4,
+                    'contenido': 20,
+                    'capacidad': 100,
+                    'consumo_por_dia': 3,
+                    'funcional': 1
+                },
+                {
+                    'tank_id': 5,
+                    'contenido': 30,
+                    'capacidad': 100,
+                    'consumo_por_dia': 3,
+                    'funcional': 0
+                },
+                {
+                    'tank_id': 6,
+                    'contenido': 40,
+                    'capacidad': 100,
+                    'consumo_por_dia': 3,
+                    'funcional': 1
+                },
+            ]
+        }]
 
 class SensoresConfig(Resource):
     def post(self):
