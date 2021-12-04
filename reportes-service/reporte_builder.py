@@ -3,12 +3,14 @@ from reporte_model import Reporte
 class ReporteBuilder():
 
     def __init__(self, db_conn, sensores_conn):
+        self.reporte_ids = 2
         self.reset()
         self.db_conn = db_conn
         self.sensores_conn = sensores_conn
 
     def reset(self):
-        self._reporte = Reporte()
+        self.reporte_ids += 1
+        self._reporte = Reporte(self.reporte_ids)
 
     @property
     def reporte(self):

@@ -1,7 +1,8 @@
 import json
 
 class Reporte():
-    def __init__(self):
+    def __init__(self, _id):
+        self.reporte_id = _id
         self.gas_utilizada = []
         self.contenido_en_tanques = []
         self.consumo_por_tanque = []

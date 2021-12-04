@@ -1,5 +1,9 @@
 class DatabaseConection():
     def __init__(self):
+        self.recipientes_correo = {
+            "pemex1": "pemex1@mail.com",
+            "pemex2": "pemex2@mail.com"
+        }
         self.reportes_anteriores = [
         { 
             'reporte_id': 1,
@@ -231,6 +235,22 @@ class DatabaseConection():
     def get_ultimo_reporte(self):
         return self.reportes_anteriores[-1]
 
+    def get_reportes(self):
+        return self.reportes_anteriores
+
+    def add_reporte(self, reporte):
+        return self.reportes_anteriores.append(reporte.jsonify())
+
     def get_contenidos_anteriores(self):
         last = self.get_ultimo_reporte()
         return last['contenido_en_tanques']
+
+    def get_recipientes(self):
+        return self.recipientes_correo
+
+    def add_recipiente(self, nombre, correo):
+        self.recipientes_correo[nombre] = correo
+
+    def remove_recipiente(self, nombre):
+        self.recipientes_correo.pop(nombre, None)
+
