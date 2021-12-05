@@ -4,21 +4,27 @@ kind: Deployment
 metadata:
   name: reportes-deployment
   labels:
-    app: reportes-service
+    app: reportes
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: reportes-service
+      app: reportes
   template:
     metadata:
       labels:
-        app: reportes-service
+        app: reportes
     spec:
       containers:
-        - name: reportes-service
+        - name: reportes
           image: reportes-service
           imagePullPolicy: Never
+          env:
+            - name: SENSORES_SERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: gas-secrets
+                  key: sensores_service_url
           ports:
             - containerPort: 5000
 
@@ -28,10 +34,10 @@ kind: Service
 metadata:
   name: reportes-service
 spec:
+  type: LoadBalancer
   ports:
   - port: 5000
     protocol: TCP
     targetPort: 5000
   selector:
-    app: reportes-service
-  type: LoadBalancer
+    app: reportes

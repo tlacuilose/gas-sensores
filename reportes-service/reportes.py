@@ -7,7 +7,7 @@ import json
 
 app = Flask(__name__)
 
-sensores_conn = SensoresConnection('http://localhost:8000/data')
+sensores_conn = SensoresConnection()
 db_conn = DatabaseConection()
 
 @app.route("/reportes", methods=['GET'])
@@ -50,4 +50,4 @@ def eliminar_destinatario():
     return {"msg": f"eliminio {content['nombre']}"}
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(host='0.0.0.0', port=5000)
