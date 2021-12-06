@@ -13,7 +13,7 @@ all tanks gas contents. /data
 that requires fetching the sensores-serivice through http, retrieving previous 
 data from a db, generating the report and sending it. /reporte
 
-# Built using
+## Built using
 
 - Flask: for both API
 - minikube: for simulating a local kubernetes cluster
@@ -22,7 +22,7 @@ data from a db, generating the report and sending it. /reporte
 
 Repository includes .yml k8s deployement files and Dockerfiles for the images
 
-# Steps
+## Steps
 
 For reportes-service/sensores-connection.py, set environment variable
 SENSORES_SERVICE_URL=http://localhost:8000/data
@@ -67,7 +67,7 @@ kubectl apply -f sensores-deployment.yml
 minikube service reportes-service 
 ```
 
-# Info de kubernetes
+## Info de kubernetes
 
 Obtener la ip publica del servicio
 
@@ -104,7 +104,7 @@ Eliminar un pod revisar orchestration, se crea un pod con ip diferente
 kubectl delete pod <nombre>
 ```
 
-# Monitoring
+## Monitoring
 
 View all installed and available metrics
 
@@ -136,11 +136,17 @@ Install logviewer
 minikube addons enable logviewer
 ```
 
+Logs can be visualized using
 
+```bash
+kubectl logs service/reportes-service --all-containers
+```
 
+## Orchestration
 
+A set of independent, composable control processes that continuously drive the current state towards the provided desired state.
 
-# info 
-CNI - agente que corre en cada nodo, vpn entre los nodos. pods entre los nodos.
-calico??
-node port
+## Monitoring
+
+Using metrics-server to see resources consumption.
+Using logviewer to see services logs.

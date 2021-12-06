@@ -3,9 +3,11 @@ from db_connection import DatabaseConection
 from sensores_connection import SensoresConnection
 from reporte_builder import ReporteBuilder
 
+import logging
 import json
 
 app = Flask(__name__)
+logging.basicConfig(level=logging.INFO)
 
 sensores_conn = SensoresConnection()
 db_conn = DatabaseConection()
@@ -31,8 +33,7 @@ def generar_reporte():
 def enviar_correo(reporte):
     recipientes = db_conn.get_recipientes()
     for nombre, correo in recipientes.items():
-        print(f'Se envio correo con reporte a {nombre} en {correo}')
-        print(f'Adjunto: reporte{reporte.reporte_id}')
+        logging.info(f'Se envio correo con reporte a {nombre} en {correo}\n\tAdjunto: reporte{reporte.reporte_id}')
 
 def guardar_reporte(reporte):
     db_conn.add_reporte(reporte)

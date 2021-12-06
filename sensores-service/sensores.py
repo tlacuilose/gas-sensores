@@ -2,7 +2,10 @@ from flask import Flask, request, jsonify
 from proxy import Proxy
 from sensores_api import SensoresAPI
 
+import logging
+
 app = Flask(__name__)
+logging.basicConfig(level=logging.INFO)
 
 sensores_api = SensoresAPI()
 proxy = Proxy(sensores_api)
@@ -14,7 +17,7 @@ def get_data_sensores():
 
 @app.route("/update-time", methods=['POST'])
 def update_time():
-    print('Cambia tiempo de sensores')
+    logging.info('Cambia tiempo de sensores')
     content = request.json
     print(content)
     sensor_id = content['sensor_id']

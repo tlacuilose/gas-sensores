@@ -25,8 +25,17 @@ spec:
                 secretKeyRef:
                   name: gas-secrets
                   key: sensores_service_url
+            - name: PYTHONUNBUFFERED
+              value: "0"
           ports:
             - containerPort: 5000
+          resources:
+            requests:
+              cpu: 40m
+              memory: 40Mi
+            limits:
+              cpu: 60m
+              memory: 60Mi
 
 ---
 apiVersion: v1
